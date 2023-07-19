@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Urban Radiance Field Representation with Deformable Neural Mesh Primitives.">
+  <meta name="keywords" content="NeRF, Urban, Mesh">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Urban Radiance Field Representation with Deformable Neural Mesh Primitives</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Urban Radiance Field Representation with Deformable Neural Mesh Primitives</h1>
+          <h2 class="title is-3">ICCV 2023</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://fanlu97.github.io/">Fan Lu</a><sup>1 *</sup>,</span>
+            <span class="author-block">
+              <a href="https://decayale.github.io/">Yan Xu</a><sup>2 *</sup>,</span>
+            <span class="author-block">
+              <a href="https://ispc-group.github.io/">Guang Chen</a><sup>1 ✉</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.ee.cuhk.edu.hk/~hsli/">Hongsheng Li</a><sup>2,3,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://kwanyeelin.github.io/">Kwan-Yee Lin</a><sup>2,3 ✉</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cae.cn/cae/html/main/colys/26976335.html">Changjun Jiang</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Tongji University,</span>
+            <span class="author-block"><sup>2</sup>The Chinese University of Hong Kong,</span>
+            <span class="author-block"><sup>3</sup>Shanghai AI Laboratory,</span>
+            <span class="author-block"><sup>4</sup>CPII</span><br>
+            <span class="author-block"><sup>*</sup>Equal contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/JmYWUxsBz-4"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (comming soon)</span>
+                  </a>
+              </span>
+              <!-- Supplementary. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supplementary</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" alt="teaser" class="teaser-image">
+      <center>
+      <p>
+        Taking the patchy point clouds as inputs, we first voxelize the points and then initialize our Deformable Neural Mesh Primitive (DNMP) for each voxel. 
+        During training, the shapes of DNMPs are deformed to model the underlying 3D structures, while the radiance features of DNMPs are learnt to model the local radiance information for neural rendering. 
+        Based on our representation, we achieve efficient and photo-realistic rendering for urban scenes.
+      </p>
+    </center>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          Neural Radiance Fields (NeRFs) have achieved great success in the past few years. However, most current methods still require intensive resources due to ray marching-based rendering. 
+          To construct urban-level radiance fields efficiently, we design Deformable Neural Mesh Primitive (DNMP), and propose to parameterize the entire scene with such primitives. 
+          The DNMP is a flexible and compact neural variant of classic mesh representation, which enjoys both the efficiency of rasterization-based rendering and the powerful neural representation capability for photo-realistic image synthesis. 
+          Specifically, a DNMP consists of a set of connected deformable mesh vertices with paired vertex features to parameterize the geometry and radiance information of a local area. 
+          To constrain the degree of freedom for optimization and lower the storage budgets, we enforce the shape of each primitive to be decoded from a relatively low-dimensional latent space. 
+          The rendering colors are decoded from the vertex features (interpolated with rasterization) by a view-dependent MLP. The DNMP provides a new paradigm for urban-level scene representation with appealing properties: 
+          (1) High-quality rendering. Our method achieves leading performance for novel view synthesis in urban scenarios. 
+          (2) Low computational costs. Our representation enables fast rendering (2.07ms/1k pixels) and low peak memory usage (110MB/1k pixels). 
+          We also present a lightweight version that can run 33x faster than vanilla NeRFs, and comparable to the highly-optimized Instant-NGP (0.61 vs 0.71ms/1k pixels).
+        </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method overview</h2>
+        <img src="./static/images/framework.png" alt="teaser" class="teaser-image">
+        <p>
+          The entire scene is voxelized based on the point-cloud reconstruction, where each voxel is assigned a DNMP to parameterize the geometry and radiance of the local area.  
+          By rasterization, we can obtain the interpolated radiance features from the intersected DNMPs for each view ray.     
+          Thereafter, these interpolated features along with the view-dependent embeddings are sent to an implicit function to predict the radiance value and opacity of each intersection point. 
+          Finally, the rendering color of the view ray is obtained by blending the radiance values according to the opacities.
+        </p>
+      </div>
+    </div>
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/JmYWUxsBz-4?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <h2 class="title is-4">Demo videos</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="editing" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/waymo-1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column content">
+            <video id="editing" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/waymo-2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column content">
+            <video id="editing" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/waymo-3.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Scene geometry optimization</h2>
+          <video id="texture" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/geometry.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Texture editing</h2>
+          <video id="texture" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/texture-edit.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <h2 class="title is-4">Object duplication</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="duplication" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/object-dup.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Object removal</h2>
+          <video id="texture" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/object-removal.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <h2 class="title is-4">Novel semantic synthesis</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="duplication" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/semantic.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{lu2023dnmp,
+  author    = {Lu, Fan and Xu, Yan and Chen, Guang and Li, Hongsheng and Lin, Kwan-Yee and Jiang, Changjun},
+  title     = {Urban Radiance Field Representation with Deformable Neural Mesh Primitives},
+  journal   = {ICCV},
+  year      = {2023},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <center>
+          <p>
+            This template is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies's webpage</a>.
+          </p>
+        </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
